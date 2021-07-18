@@ -37,6 +37,8 @@ module.exports = async (req, res) => {
     console.log("Fetching events...");
     await client.query("SELECT id FROM events;", (err, res)=> {
         if (err) throw err;
+        console.log("Rows: ");
+        console.log(res.rows);
 
         if (res.rows.length > 0) {
           console.log("Events:");
