@@ -1,4 +1,19 @@
 const { Pool } = require("pg");
+const config = {
+  user: "ahmed",
+  password: "n7IwOh6v-5XSMCNA",
+  host: "free-tier5.gcp-europe-west1.cockroachlabs.cloud",
+  database: "socialeventsdb",
+  port: 26257,
+  ssl: {
+    rejectUnauthorized: false,
+  },
+  //For secure connection:
+  /*ssl: {
+        ca: fs.readFileSync('/certs/ca.crt')
+            .toString()
+    }*/
+};
 const pool = new Pool(config);
 
 /*
@@ -16,22 +31,14 @@ password =n7IwOh6v-5XSMCNA
 postgresql://ahmed:n7IwOh6v-5XSMCNA@free-tier5.gcp-europe-west1.cockroachlabs.cloud:26257/defaultdb?sslmode=verify-full&sslrootcert=$HOME/.postgresql/root.crt&options=--cluster%3Dable-fox-821
 */
 module.exports = async (req, res) => {
-    const events = [];
     const client = await pool.connect();
-    console.log("Fetching events...");
-    await client.query("SELECT id FROM events;", ()=> {
+    console.log("Adding events...");
+    
+    await client.query("INSERT INTO events (title) VALUES ('event 1'), ('event 2');", ()=> {
         if (err) throw err;
-
-        if (res.rows.length > 0) {
-          console.log("Events:");
-          res.rows.forEach((row) => {
-            console.log(row);
-            events.push(row);
-          });
-        }
     });
 
     res.json({
-      events: events
+      message: "Event is created.."
     });
 };
