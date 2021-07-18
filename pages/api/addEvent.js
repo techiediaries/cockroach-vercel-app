@@ -34,7 +34,7 @@ module.exports = async (req, res) => {
     const client = await pool.connect();
     console.log("Adding events...");
     
-    await client.query("INSERT INTO events (title) VALUES ('event 1'), ('event 2');", (res, err)=> {
+    await client.query("INSERT INTO events (title) VALUES ('event 1'), ('event 2');", (err, res)=> {
         if (err) throw err;
         console.log(res);
     });
