@@ -35,7 +35,7 @@ module.exports = async (req, res) => {
     const events = [];
     const client = await pool.connect();
     console.log("Fetching events...");
-    await client.query("SELECT id FROM events;", ()=> {
+    await client.query("SELECT id FROM events;", (res, err)=> {
         if (err) throw err;
 
         if (res.rows.length > 0) {
