@@ -3,25 +3,25 @@ import { Container, Row, Card, Button, Form } from 'react-bootstrap'
 import React from 'react';
 
 const Home = () => {
-    const eventName = React.useRef();
+    const eventTitle = React.useRef();
     const eventDate = React.useRef();
     const eventTime = React.useRef();
     const eventDescription = React.useRef();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(eventName.current.value, eventDate.current.value, eventTime.current.value, eventDescription.current.value);
-        const rawResponse = await fetch("https://mysocialevents.vercel.app/api/addEvent", {
+        console.log(eventTitle.current.value, eventDate.current.value, eventTime.current.value, eventDescription.current.value);
+        const response = await fetch("https://mysocialevents.vercel.app/api/addEvent", {
             method: 'POST',
             headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "eventName": eventName.current.value,
-                "eventdate": eventDate.current.value,
-                "eventTime": eventTime.current.value,
-                "eventDescription": eventDescription.current.value 
+                "title": eventTitle.current.value,
+                "date": eventDate.current.value,
+                "time": eventTime.current.value,
+                "description": eventDescription.current.value
             })
         });
     };
@@ -45,9 +45,9 @@ const Home = () => {
                         <Card className="sml-card">
                             <Card.Body>
                                 <Form onSubmit={handleSubmit}>
-                                    <Form.Group controlId="form.eventName">
-                                        <Form.Label>Name</Form.Label>
-                                        <Form.Control type="text" placeholder="Enter event name" ref={eventName} />
+                                    <Form.Group controlId="form.eventTitle">
+                                        <Form.Label>Title</Form.Label>
+                                        <Form.Control type="text" placeholder="Enter event title" ref={eventTitle} />
                                     </Form.Group>
                                     <Form.Group controlId="form.eventDate">
                                         <Form.Label>Event date</Form.Label>
@@ -65,12 +65,9 @@ const Home = () => {
                                     <Form.Group>
                                         <Button className="btn btn-primary" type="submit">Send</Button>
                                     </Form.Group>
-
                                 </Form>
                             </Card.Body>
                         </Card>
-
-
                     </Row>
                 </Container>
             </Container>
@@ -81,7 +78,5 @@ const Home = () => {
         </Container>
     )
 }
-
-
 export default Home;
 
