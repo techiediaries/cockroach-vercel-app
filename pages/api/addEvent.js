@@ -20,7 +20,7 @@ const pool = new Pool(config);
 module.exports = async (request, response) => {
     const { title, description, date, time } = request.body;
     console.log("Posted data:", request.body);
-    const query = `INSERT INTO events (title, description, event_date, event_time) VALUES (${title}, ${description}, ${date}, ${time});`;
+    const query = `INSERT INTO events (title, description, event_date, event_time) VALUES ('${title}', '${description}', '${date}', '${time}');`;
     const client = await pool.connect();
     console.log("Adding events...");
 
