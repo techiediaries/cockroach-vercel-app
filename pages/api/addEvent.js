@@ -23,6 +23,8 @@ module.exports = async (request, response) => {
     const query = `INSERT INTO events (title, description, event_date, event_time) VALUES (${title}, ${description}, ${date}, ${time});`;
     const client = await pool.connect();
     console.log("Adding events...");
+
+    console.log("Sending the query: ", query);
     
     await client.query(query, (err, res)=> {
         if (err) {
