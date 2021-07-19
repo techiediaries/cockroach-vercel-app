@@ -16,13 +16,13 @@ const config = {
 };
 const pool = new Pool(config);
 
-
 module.exports = async (request, response) => {
-    const { title, description, date, time } = request.body;
+    const { name, eventId } = request.body;
     console.log("Posted data:", request.body);
-    const query = `INSERT INTO events (title, description, event_date, event_time) VALUES (${title}, ${description}, ${date}, ${time});`;
+
+    const query = `INSERT INTO people (name, eventId) VALUES (${name}, ${event_id});`;
     const client = await pool.connect();
-    console.log("Adding events...");
+    console.log("RSVP");
     
     await client.query(query, (err, res)=> {
         if (err) {

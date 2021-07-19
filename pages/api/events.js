@@ -31,15 +31,12 @@ password =n7IwOh6v-5XSMCNA
 
 postgresql://ahmed:n7IwOh6v-5XSMCNA@free-tier5.gcp-europe-west1.cockroachlabs.cloud:26257/defaultdb?sslmode=verify-full&sslrootcert=$HOME/.postgresql/root.crt&options=--cluster%3Dable-fox-821
 */
-module.exports = async (req, resp) => {
+module.exports = async (request, response) => {
     const events = [];
     const client = await pool.connect();
     console.log("Fetching events...");
-    await client.query("SELECT id FROM events;", (err, res)=> {
+    await client.query("SELECT * FROM events;", (err, res)=> {
         if (err) throw err;
-        console.log("Rows: ");
-        console.log(res.rows);
-
         if (res.rows.length > 0) {
           console.log("Events:");
           res.rows.forEach((row) => {
@@ -48,7 +45,7 @@ module.exports = async (req, resp) => {
           });
         }
 
-        resp.json({
+        response.json({
           events: events
         });
     });
