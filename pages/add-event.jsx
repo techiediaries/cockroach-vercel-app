@@ -11,7 +11,7 @@ const Home = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(eventName.current.value, eventDate.current.value, eventTime.current.value, eventDescription.current.value);
-        const rawResponse = await fetch("https://mysocialevents-5qli6f28f-devfordev.vercel.app/api/addEvent", {
+        const rawResponse = await fetch("https://mysocialevents.vercel.app/api/addEvent", {
             method: 'POST',
             headers: {
               'Accept': 'application/json',

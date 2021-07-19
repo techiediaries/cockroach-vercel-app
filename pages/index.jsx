@@ -54,8 +54,7 @@ const Home = ({error, events}) => {
 Home.getInitialProps = async ctx => {
   try {
     const response = await fetch(
-      "https://mysocialevents-5qli6f28f-devfordev.vercel.app/api/events"
-      
+      "https://mysocialevents.vercel.app/api/events"
     );
     const events = await response.json();
     console.log("events:=", events);
