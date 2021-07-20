@@ -19,7 +19,7 @@ const Home = ({ error, events }) => {
     setPeople(people);
     console.log("People", people);
     setShowPeople(true);
-  }
+  };
   const onRSVP = async (eventId) => {
     console.log("RSVP with name: ", eventId, name);
     const response = await fetch("https://mysocialevents.vercel.app/api/rsvp", {
@@ -65,11 +65,7 @@ const Home = ({ error, events }) => {
               <Modal.Title>People</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <ul>
-            {people.map((p, index) => (
-              <li> {p.name}</li>
-            ))}
-            </ul>
+
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>
