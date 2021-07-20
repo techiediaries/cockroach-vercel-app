@@ -13,7 +13,7 @@ const Home = ({ error, events }) => {
   const handleClose = () => setShowPeople(false);
   const handleShow = () => setShowPeople(true);
 
-  const fetchPeople = eventId => {
+  const fetchPeople = async (eventId) => {
     const response = await fetch(
       `https://mysocialevents.vercel.app/api/people?eventId=${eventId}`
     );
