@@ -2,13 +2,27 @@ import React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 
-import { Container, Row, Card, Button, Form } from 'react-bootstrap'
+import { Container, Row, Card, Button, Form, Modal } from 'react-bootstrap'
+
 
 const Home = ({ error, events }) => {
   const [name, setName] = React.useState('');
+  const [showPeople, setShowPeople] = React.useState(false);
+  const [people, setPeople] = React.useState([]);
+  
+  const handleClose = () => setShowPeople(false);
+  const handleShow = () => setShowPeople(true);
 
+  const fetchPeople = eventId => {
+    const response = await fetch(
+      `https://mysocialevents.vercel.app/api/people?eventId=${eventId}`
+    );
+    const people = await response.json();
+    setPeople(people);
+    setShowPeople(true)
+  }
   const onRSVP = async (eventId) => {
-    console.log("RSVP with name: ",eventId ,name);
+    console.log("RSVP with name: ", eventId, name);
     const response = await fetch("https://mysocialevents.vercel.app/api/rsvp", {
       method: 'POST',
       headers: {
@@ -47,6 +61,23 @@ const Home = ({ error, events }) => {
           </Button>
         </Link>
         <Container>
+          <Modal show={showPeople} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>People</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <ul>
+            {people.map((p, index) => (
+              <li> {p.name}</li>
+            ))}
+            </ul>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+            </Modal.Footer>
+          </Modal>
           <Row className="justify-content-md-between">
             {events.map((event, index) => (
               <Card key={index} className="sml-card">
@@ -64,6 +95,10 @@ const Home = ({ error, events }) => {
                   <Button variant="primary" onClick={() => onRSVP(event.id)} >
                     RSVP &rarr;
                   </Button>
+                  <Button variant="primary" onClick={fetchPeople} >
+                    People who have RSVP'd
+                  </Button>
+
                   <Form.Control type="text" placeholder="Write your name to RSVP.." value={name} onInput={e => setName(e.target.value)} />
 
                 </Card.Body>
