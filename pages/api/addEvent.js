@@ -28,7 +28,8 @@ module.exports = async (request, response) => {
     
     await client.query(query, (err, res)=> {
         if (err) {
-          response.json({
+          console.log(err);
+          response.status(500).json({
             message: err.message
           });
         }
