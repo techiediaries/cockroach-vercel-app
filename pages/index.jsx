@@ -95,7 +95,7 @@ const Home = ({ error, events }) => {
                   <Button variant="primary" onClick={() => onRSVP(event.id)} >
                     RSVP &rarr;
                   </Button>
-                  <Button variant="primary" onClick={fetchPeople} >
+                  <Button variant="primary" onClick={() => fetchPeople(event.id)} >
                     People who have RSVP'd
                   </Button>
 
