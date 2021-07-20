@@ -1,9 +1,34 @@
+import React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 
-import { Container, Row, Card, Button } from 'react-bootstrap'
+import { Container, Row, Card, Button, Form } from 'react-bootstrap'
 
-const Home = ({error, events}) => {
+const Home = ({ error, events }) => {
+  const nameRef = React.useRef();
+
+  const onRSVP = (eventId) => {
+    const name = nameRef.current.value;
+    console.log("RSVP with name: ",eventId ,name);
+    const response = await fetch("https://mysocialevents.vercel.app/api/rsvp", {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "name": name,
+        "eventId": eventDate.current.value
+      })
+    });
+    console.log(response);
+    if (response.status == 200) {
+      alert("Received!");
+    } else {
+      alert("Error!");
+    }
+  };
+
   return (
     <Container className="md-container">
       <Head>
@@ -12,46 +37,48 @@ const Home = ({error, events}) => {
       </Head>
       <Container>
         <h1>
-          Social Events 
+          Social Events
         </h1>
         <p>
           Share and attend events..
         </p>
         <Link href="add-event">
-        <Button variant="primary">
-                  Add event &rarr;
-        </Button>
+          <Button variant="primary">
+            Add event &rarr;
+          </Button>
         </Link>
 
 
         <Container>
           <Row className="justify-content-md-between">
-          {events.map((event, index) => (
-            <Card key={index} className="sml-card">
-              <Card.Body>
-                <Card.Title>{event.title}</Card.Title>
-                <Card.Text>
-                {event.description}
-                </Card.Text>
-                <Card.Text>
-                Date: {event.event_date} 
-                </Card.Text>
-                <Card.Text>
-                Time: {event.event_time}
-                </Card.Text>
-                <Button variant="primary" href="https://nextjs.org/docs">
-                  RSVP &rarr;
-                </Button>
-              </Card.Body>
-            </Card>
-          ))}
+            {events.map((event, index) => (
+              <Card key={index} className="sml-card">
+                <Card.Body>
+                  <Card.Title>{event.title}</Card.Title>
+                  <Card.Text>
+                    {event.description}
+                  </Card.Text>
+                  <Card.Text>
+                    Date: {event.event_date}
+                  </Card.Text>
+                  <Card.Text>
+                    Time: {event.event_time}
+                  </Card.Text>
+                  <Button variant="primary" onClick={() => onRSVP(event.id)} >
+                    RSVP &rarr;
+                  </Button>
+                  <Form.Control size="sm" name="text" placeholder="Write your name to RSVP.." ref={nameRef} />
+
+                </Card.Body>
+              </Card>
+            ))}
 
           </Row>
         </Container>
       </Container>
 
       <footer className="cntr-footer">
-       <p>Social Events (c) 2021</p>
+        <p>Social Events (c) 2021</p>
       </footer>
     </Container>
   )

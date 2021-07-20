@@ -27,6 +27,10 @@ const Home = () => {
         console.log(response);
         if(response.status == 200){
             alert("Your event is added!");
+            eventTitle.current.value = ''; 
+            eventDate.current.value = ''; 
+            eventTime.current.value = '';
+            eventDescription.current.value = '';
         } else {
             alert("Error!");
         }
