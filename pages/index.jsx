@@ -5,10 +5,9 @@ import Link from 'next/link'
 import { Container, Row, Card, Button, Form } from 'react-bootstrap'
 
 const Home = ({ error, events }) => {
-  const nameRef = React.useRef();
+  const [name, setName] = useState('');
 
   const onRSVP = async (eventId) => {
-    const name = nameRef.current.value;
     console.log("RSVP with name: ",eventId ,name);
     const response = await fetch("https://mysocialevents.vercel.app/api/rsvp", {
       method: 'POST',
@@ -47,8 +46,6 @@ const Home = ({ error, events }) => {
             Add event &rarr;
           </Button>
         </Link>
-
-
         <Container>
           <Row className="justify-content-md-between">
             {events.map((event, index) => (
@@ -67,12 +64,11 @@ const Home = ({ error, events }) => {
                   <Button variant="primary" onClick={() => onRSVP(event.id)} >
                     RSVP &rarr;
                   </Button>
-                  <Form.Control size="sm" name="text" placeholder="Write your name to RSVP.." ref={nameRef} />
+                  <Form.Control type="text" placeholder="Write your name to RSVP.." value={name} onInput={e => setName(e.target.value)} />
 
                 </Card.Body>
               </Card>
             ))}
-
           </Row>
         </Container>
       </Container>
