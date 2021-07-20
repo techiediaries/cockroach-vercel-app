@@ -24,6 +24,8 @@ const Home = () => {
                 "description": eventDescription.current.value
             })
         });
+
+        console.log(response);
     };
 
     return (

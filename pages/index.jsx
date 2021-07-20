@@ -34,7 +34,7 @@ const Home = ({error, events}) => {
                 {event.description}
                 </Card.Text>
                 <Card.Text>
-                {event.date}: {event.time} 
+                {event.event_date}: {event.event_time} 
                 </Card.Text>
                 <Button variant="primary" href="https://nextjs.org/docs">
                   RSVP &rarr;
