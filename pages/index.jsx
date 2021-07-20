@@ -7,7 +7,7 @@ import { Container, Row, Card, Button, Form } from 'react-bootstrap'
 const Home = ({ error, events }) => {
   const nameRef = React.useRef();
 
-  const onRSVP = (eventId) => {
+  const onRSVP = async (eventId) => {
     const name = nameRef.current.value;
     console.log("RSVP with name: ",eventId ,name);
     const response = await fetch("https://mysocialevents.vercel.app/api/rsvp", {
