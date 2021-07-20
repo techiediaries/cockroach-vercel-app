@@ -86,7 +86,7 @@ const Home = ({ error, events }) => {
                     {event.description}
                   </Card.Text>
                   <Card.Text>
-                    Date: {event.event_date}
+                    Date: {event.event_date.toISOString().substring(0, 10) }
                   </Card.Text>
                   <Card.Text>
                     Time: {event.event_time}
