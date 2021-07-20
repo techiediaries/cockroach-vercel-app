@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { Container, Row, Card, Button, Form } from 'react-bootstrap'
 
 const Home = ({ error, events }) => {
-  const [name, setName] = useState('');
+  const [name, setName] = React.useState('');
 
   const onRSVP = async (eventId) => {
     console.log("RSVP with name: ",eventId ,name);
