@@ -18,7 +18,7 @@ const Home = ({ error, events }) => {
       },
       body: JSON.stringify({
         "name": name,
-        "eventId": eventDate.current.value
+        "eventId": eventId
       })
     });
     console.log(response);
