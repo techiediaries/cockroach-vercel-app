@@ -19,7 +19,8 @@ const Home = ({ error, events }) => {
     );
     const people = await response.json();
     setPeople(people);
-    setShowPeople(true)
+    console.log("People", people);
+    setShowPeople(true);
   }
   const onRSVP = async (eventId) => {
     console.log("RSVP with name: ", eventId, name);
@@ -67,9 +68,7 @@ const Home = ({ error, events }) => {
             </Modal.Header>
             <Modal.Body>
               <ul>
-            {people.map((p, index) => (
-              <li> {p.name}</li>
-            ))}
+
             </ul>
             </Modal.Body>
             <Modal.Footer>
