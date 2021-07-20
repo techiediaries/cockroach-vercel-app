@@ -52,7 +52,7 @@ const Home = ({ error, events }) => {
           Social Events
         </h1>
         <p>
-        <Link href="add-event">Share</Link> and attend <Link href="events">events</Link>..
+        <Link href="add-event">Share</Link> and attend events..
         </p>
         <Link href="add-event">
           <Button variant="primary">

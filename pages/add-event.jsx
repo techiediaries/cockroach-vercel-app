@@ -1,4 +1,6 @@
 import Head from 'next/head'
+import Link from 'next/link'
+
 import { Container, Row, Card, Button, Form } from 'react-bootstrap'
 import React from 'react';
 
@@ -47,7 +49,7 @@ const Home = () => {
                     Social Events
                 </h1>
                 <p>
-                    Share and attend events..
+                  Share and attend <Link href="/">events</Link>..
                 </p>
                 <Container>
                     <Row className="justify-content-md-between">
