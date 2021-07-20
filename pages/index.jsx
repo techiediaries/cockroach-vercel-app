@@ -14,9 +14,7 @@ const Home = ({ error, events }) => {
   const handleShow = () => setShowPeople(true);
 
   const fetchPeople = async (eventId) => {
-    const response = await fetch(
-      `https://mysocialevents.vercel.app/api/people?eventId=${eventId}`
-    );
+    const response = await fetch(`https://mysocialevents.vercel.app/api/people?eventId=${eventId}`);
     const people = await response.json();
     setPeople(people);
     console.log("People", people);
@@ -37,7 +35,7 @@ const Home = ({ error, events }) => {
     });
     console.log(response);
     if (response.status == 200) {
-      alert("Received!");
+      alert("RSVP'd!");
     } else {
       alert("Error!");
     }
@@ -54,7 +52,7 @@ const Home = ({ error, events }) => {
           Social Events
         </h1>
         <p>
-          Share and attend events..
+        <Link href="add-event">Share</Link> and attend <Link href="events">events</Link>..
         </p>
         <Link href="add-event">
           <Button variant="primary">
@@ -68,7 +66,9 @@ const Home = ({ error, events }) => {
             </Modal.Header>
             <Modal.Body>
               <ul>
-
+            {people.map((p, index) => (
+              <li> {p.name}</li>
+            ))}
             </ul>
             </Modal.Body>
             <Modal.Footer>
