@@ -20,7 +20,7 @@ module.exports = async (request, response) => {
     const { name, eventId } = request.body;
     console.log("Posted data:", request.body);
 
-    const query = `INSERT INTO people (name, eventId) VALUES ('${name}', '${eventId}');`;
+    const query = `INSERT INTO people (name, event_id) VALUES ('${name}', '${eventId}');`;
     const client = await pool.connect();
     console.log("RSVP");
     
