@@ -49,7 +49,6 @@ const Home = ({ error, events }) => {
           Social Events
         </h1>
         <p>
-        <Link href="add-event">Share</Link> and attend events..
         </p>
         <Link href="add-event">
           <Button variant="primary">
@@ -57,21 +56,32 @@ const Home = ({ error, events }) => {
           </Button>
         </Link>
         <Container>
-          <Modal show={showPeople} onHide={handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>People</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                Close
-              </Button>
-            </Modal.Footer>
-          </Modal>
           <Row className="justify-content-md-between">
+            {events.map((event, index) => (
+              <Card key={index} className="sml-card">
+                <Card.Body>
+                  <Card.Title>{event.title}</Card.Title>
+                  <Card.Text>
+                    {event.description}
+                  </Card.Text>
+                  <Card.Text>
+                    Date: {event.event_date}
+                  </Card.Text>
+                  <Card.Text>
+                    Time: {event.event_time}
+                  </Card.Text>
+                  <Button variant="primary" onClick={() => onRSVP(event.id)} >
+                    RSVP &rarr;
+                  </Button>
+                  <Button variant="primary" onClick={() => fetchPeople(event.id)} >
+                    People who have RSVP'd
+                  </Button>
 
+                  <Form.Control type="text" placeholder="Write your name to RSVP.." value={name} onInput={e => setName(e.target.value)} />
+
+                </Card.Body>
+              </Card>
+            ))}
           </Row>
         </Container>
       </Container>
