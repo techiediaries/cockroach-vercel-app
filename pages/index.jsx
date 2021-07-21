@@ -11,7 +11,7 @@ const Home = ({ error, events }) => {
   const [people, setPeople] = React.useState([]);
   
   const handleClose = () => {
-    this.setShowPeople(false);
+    setShowPeople(false);
   };
   const fetchPeople = async (eventId) => {
     const response = await fetch(`https://mysocialevents.vercel.app/api/people?eventId=${eventId}`);
@@ -97,9 +97,6 @@ const Home = ({ error, events }) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
         </Modal.Footer>
       </Modal>
 
@@ -112,7 +109,7 @@ const Home = ({ error, events }) => {
   )
 }
 
-Home.getInitialProps = async ctx => {
+Home.getServerSideProps = async ctx => {
   try {
     const response = await fetch(
       "https://mysocialevents.vercel.app/api/events"
