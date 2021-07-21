@@ -92,7 +92,12 @@ const Home = ({ error, events }) => {
         <Modal.Header>
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Body>
+        {people.map((pp, index) => (
+
+          <p> { pp.name } </p>
+        ))}
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
@@ -109,7 +114,7 @@ const Home = ({ error, events }) => {
   )
 }
 
-/*Home.getInitialProps = async ctx => {
+Home.getInitialProps = async ctx => {
   try {
     const response = await fetch(
       "https://mysocialevents.vercel.app/api/events"
@@ -120,20 +125,7 @@ const Home = ({ error, events }) => {
   } catch (error) {
     return { error };
   }
-};*/
-
-export async function getServerSideProps(context) {
-  try {
-    const response = await fetch(
-      "https://mysocialevents.vercel.app/api/events"
-    );
-    const events = await response.json();
-    console.log("events:=", events);
-    return events;
-  } catch (error) {
-    return { error };
-  }
-}
+};
 
 export default Home;
 
