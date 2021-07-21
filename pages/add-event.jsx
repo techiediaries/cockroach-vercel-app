@@ -26,7 +26,6 @@ const EventPage = () => {
                 "description": eventDescription.current.value
             })
         });
-        console.log(response);
         if(response.status == 200){
             alert("Your event is added!");
             eventTitle.current.value = ''; 

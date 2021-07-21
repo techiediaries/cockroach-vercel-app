@@ -57,6 +57,19 @@ const Home = ({ error, events }) => {
           </Button>
         </Link>
         <Container>
+          <Modal show={showPeople} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>People</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              This is a modal..
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+            </Modal.Footer>
+          </Modal>
           <Row className="justify-content-md-between">
             {events.map((event, index) => (
               <Card key={index} className="sml-card">
