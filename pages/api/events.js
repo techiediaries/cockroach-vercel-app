@@ -23,7 +23,12 @@ module.exports = async (request, response) => {
     const client = await pool.connect();
     console.log("Fetching events...");
     await client.query("SELECT * FROM events;", (err, res)=> {
-        if (err) throw err;
+        if (err){
+          client.release();
+          response.status(500).json({
+            message: err.message
+          });          
+        }
         if (res.rows.length > 0) {
           console.log("Events:");
           res.rows.forEach((row) => {

@@ -10,9 +10,6 @@ const Home = ({ error, events }) => {
   const [showPeople, setShowPeople] = React.useState(false);
   const [people, setPeople] = React.useState([]);
   
-  const handleClose = () => setShowPeople(false);
-  const handleShow = () => setShowPeople(true);
-
   const fetchPeople = async (eventId) => {
     const response = await fetch(`https://mysocialevents.vercel.app/api/people?eventId=${eventId}`);
     const people = await response.json();
@@ -74,31 +71,7 @@ const Home = ({ error, events }) => {
             </Modal.Footer>
           </Modal>
           <Row className="justify-content-md-between">
-            {events.map((event, index) => (
-              <Card key={index} className="sml-card">
-                <Card.Body>
-                  <Card.Title>{event.title}</Card.Title>
-                  <Card.Text>
-                    {event.description}
-                  </Card.Text>
-                  <Card.Text>
-                    Date: {event.event_date}
-                  </Card.Text>
-                  <Card.Text>
-                    Time: {event.event_time}
-                  </Card.Text>
-                  <Button variant="primary" onClick={() => onRSVP(event.id)} >
-                    RSVP &rarr;
-                  </Button>
-                  <Button variant="primary" onClick={() => fetchPeople(event.id)} >
-                    People who have RSVP'd
-                  </Button>
 
-                  <Form.Control type="text" placeholder="Write your name to RSVP.." value={name} onInput={e => setName(e.target.value)} />
-
-                </Card.Body>
-              </Card>
-            ))}
           </Row>
         </Container>
       </Container>

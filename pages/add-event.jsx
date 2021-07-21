@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { Container, Row, Card, Button, Form } from 'react-bootstrap'
 import React from 'react';
 
-const Home = () => {
+const EventPage = () => {
     const eventTitle = React.useRef();
     const eventDate = React.useRef();
     const eventTime = React.useRef();
@@ -49,7 +49,7 @@ const Home = () => {
                     Social Events
                 </h1>
                 <p>
-                  Share and attend <Link href="/">events</Link>..
+                  Share and attend <Link href="/">events</Link> ..
                 </p>
                 <Container>
                     <Row className="justify-content-md-between">
@@ -90,5 +90,5 @@ const Home = () => {
         </Container>
     )
 }
-export default Home;
+export default EventPage;
 
