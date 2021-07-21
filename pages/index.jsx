@@ -57,19 +57,22 @@ const Home = ({ error, events }) => {
           </Button>
         </Link>
         <Container>
-          <Modal show={showPeople} onHide={handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>People</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              This is a modal..
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                Close
-              </Button>
-            </Modal.Footer>
-          </Modal>
+
+      <Modal show={showPeople} onHide={handleClose} backdrop='static' keyboard="false">
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
           <Row className="justify-content-md-between">
             {events.map((event, index) => (
               <Card key={index} className="sml-card">
