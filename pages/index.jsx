@@ -88,15 +88,12 @@ const Home = ({ error, events }) => {
             ))}
           </Row>
         </Container>
-        <Modal show={showPeople} onHide={handleClose} backdrop='static' keyboard="false">
+        <Modal show={showPeople} onHide={handleClose} >
         <Modal.Header>
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        {people.map((pp, index) => (
-
-          <p> { pp.name } </p>
-        ))}
+        { ...people }
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
