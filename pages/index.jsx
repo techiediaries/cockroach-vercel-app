@@ -10,6 +10,9 @@ const Home = ({ error, events }) => {
   const [showPeople, setShowPeople] = React.useState(false);
   const [people, setPeople] = React.useState([]);
   
+  const handleClose = () => {
+    this.setShowPeople(false);
+  };
   const fetchPeople = async (eventId) => {
     const response = await fetch(`https://mysocialevents.vercel.app/api/people?eventId=${eventId}`);
     const people = await response.json();
@@ -57,7 +60,6 @@ const Home = ({ error, events }) => {
           </Button>
         </Link>
         <Container>
-
           <Row className="justify-content-md-between">
             {events.map((event, index) => (
               <Card key={index} className="sml-card">
@@ -86,6 +88,21 @@ const Home = ({ error, events }) => {
             ))}
           </Row>
         </Container>
+        <Modal show={showPeople} onHide={handleClose} backdrop='static' keyboard="false">
+        <Modal.Header>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
       </Container>
 
       <footer className="cntr-footer">
