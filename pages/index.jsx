@@ -109,7 +109,7 @@ const Home = ({ error, events }) => {
   )
 }
 
-Home.getServerSideProps = async ctx => {
+/*Home.getInitialProps = async ctx => {
   try {
     const response = await fetch(
       "https://mysocialevents.vercel.app/api/events"
@@ -120,7 +120,20 @@ Home.getServerSideProps = async ctx => {
   } catch (error) {
     return { error };
   }
-};
+};*/
+
+export async function getServerSideProps(context) {
+  try {
+    const response = await fetch(
+      "https://mysocialevents.vercel.app/api/events"
+    );
+    const events = await response.json();
+    console.log("events:=", events);
+    return events;
+  } catch (error) {
+    return { error };
+  }
+}
 
 export default Home;
 
