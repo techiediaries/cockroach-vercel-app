@@ -77,9 +77,10 @@ const Home = ({ error, events }) => {
                   <Button variant="primary" onClick={() => onRSVP(event.id)} >
                     RSVP &rarr;
                   </Button>
+                  <Link href= { "" + event.id }>
                   <Button variant="primary" onClick={() => fetchPeople(event.id)} >
                     People who have RSVP'd
-                  </Button>
+                  </Button></Link>
 
                   <Form.Control type="text" placeholder="Write your name to RSVP.." value={name} onInput={e => setName(e.target.value)} />
 
@@ -88,18 +89,7 @@ const Home = ({ error, events }) => {
             ))}
           </Row>
         </Container>
-        <Modal show={showPeople} onHide={handleClose} >
-        <Modal.Header>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
+
 
       </Container>
 
