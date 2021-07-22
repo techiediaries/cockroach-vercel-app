@@ -7,19 +7,6 @@ import { Container, Row, Card, Button, Form, Modal } from 'react-bootstrap'
 
 const Home = ({ error, events }) => {
   const [name, setName] = React.useState('');
-  const [showPeople, setShowPeople] = React.useState(false);
-  const [people, setPeople] = React.useState([]);
-  
-  const handleClose = () => {
-    setShowPeople(false);
-  };
-  const fetchPeople = async (eventId) => {
-    const response = await fetch(`https://mysocialevents.vercel.app/api/people?eventId=${eventId}`);
-    const people = await response.json();
-    setPeople(people);
-    console.log("People", people);
-    setShowPeople(true);
-  };
   const onRSVP = async (eventId) => {
     console.log("RSVP with name: ", eventId, name);
     const response = await fetch("https://mysocialevents.vercel.app/api/rsvp", {
@@ -78,7 +65,7 @@ const Home = ({ error, events }) => {
                     RSVP &rarr;
                   </Button>
                   <Link href= { "" + event.id }>
-                  <Button variant="primary" onClick={() => fetchPeople(event.id)} >
+                  <Button variant="primary">
                     People who have RSVP'd
                   </Button></Link>
 
