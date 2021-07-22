@@ -52,3 +52,5 @@ const PeoplePage = () => {
       </Container>        
     );
 };
+
+export default PeoplePage;
