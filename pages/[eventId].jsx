@@ -10,9 +10,9 @@ const PeoplePage = () => {
 
     const fetchPeople = async (eventId) => {
         const response = await fetch(`https://mysocialevents.vercel.app/api/people?eventId=${eventId}`);
-        const people = await response.json();
-        const arr = [...people];
-        setPeople(arr);
+        const res = await response.json();
+        //const arr = [...res.people];
+        setPeople(res.people);
         console.log("People", people);
         //setShowPeople(true);
     };
