@@ -11,9 +11,10 @@ const PeoplePage = () => {
     const fetchPeople = async (eventId) => {
         const response = await fetch(`https://mysocialevents.vercel.app/api/people?eventId=${eventId}`);
         const people = await response.json();
-        setPeople(people);
+        const arr = [...people];
+        setPeople(arr);
         console.log("People", people);
-        setShowPeople(true);
+        //setShowPeople(true);
     };
 
     React.useEffect(async () => {
