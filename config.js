@@ -55,7 +55,7 @@ const config = {
   port: 26257,
   ssl: {
     rejectUnauthorized: true,
-    ca: CERTIFICATE
+    ca:  process.env.CERT
   }
 };
 exports.config = config;
