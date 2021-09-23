@@ -9,7 +9,7 @@ const config = {
   port: 26257,
   ssl: {
     rejectUnauthorized: true,
-    ca: readFileSync(join('./certs', 'root.crt')).toString()
+    ca: readFileSync(join('./certs/', 'root.crt')).toString()
   }
 };
 exports.config = config;
