@@ -8,7 +8,8 @@ const config = {
   database: "able-fox-821.socialeventsdb",
   port: 26257,
   ssl: {
-    rejectUnauthorized: false
+    rejectUnauthorized: true,
+    ca: readFileSync(join('./certs', 'root.crt')).toString()
   }
 };
 exports.config = config;
