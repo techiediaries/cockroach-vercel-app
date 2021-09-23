@@ -1,5 +1,5 @@
-const { readFileSync } = require('fs');
-const { join } = require('path');
+//const { readFileSync } = require('fs');
+//const { join } = require('path');
 
 const config = {
   user: "ahmed",
@@ -8,8 +8,7 @@ const config = {
   database: "able-fox-821.socialeventsdb",
   port: 26257,
   ssl: {
-    rejectUnauthorized: true,
-    ca: readFileSync(join(__dirname, 'certs', 'root.crt')).toString()
+    rejectUnauthorized: false
   }
 };
 exports.config = config;
